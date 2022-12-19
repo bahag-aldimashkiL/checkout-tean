@@ -1,0 +1,178 @@
+:root {
+  --grey: #666666;
+  --main: #ee1f26;
+  --light-red: hsla(358, 86%, 70%, 0.271);
+  --dark-green: #28b485;
+  --white: #ffffff;
+}
+
+/*UNIVERSAL SELECTOR*/
+/*Select each element on the page and apply the css rules to it*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "lato", sans-serf;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--grey);
+  padding: 1.5rem;
+}
+
+.header {
+  height: 95vh;
+  background-image: linear-gradient(
+      to right bottom,
+      var(--light-red),
+      var(--main)
+    ),
+    url(../img/team.png);
+  background-size: cover;
+  background-position: top;
+  position: relative;
+  clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
+}
+
+.logo-wrapper {
+  position: absolute;
+  top: 3rem;
+  left: 3rem;
+}
+
+/* .logo-wrapper img:hover{
+  animation: moveInRight 2s ease-out;
+} */
+
+.text-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+.heading-primary {
+  color: var(--white);
+  text-transform: uppercase;
+
+  backface-visibility: hidden;
+  margin-bottom: 3rem;
+}
+.heading-primary-main {
+  display: block;
+  font-size: 4rem;
+  font-weight: 400;
+  letter-spacing: 1.6rem;
+
+  animation-name: moveInLeft;
+  animation-duration: 2s;
+  animation-timing-function: ease-out;
+  /*
+    animation-delay: 2s;
+    animation-iteration-count: 2;
+    animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  */
+}
+.heading-primary-sub {
+  display: block;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 1rem;
+
+  animation: moveInRight 2s ease-out;
+}
+
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-100px) /*rotate(-50deg)*/;
+  }
+  /* 60%{
+    transform: rotate(120deg);
+  } */
+  80% {
+    transform: translateX(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+@keyframes moveInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  80% {
+    transform: translateX(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+@keyframes moveInBottom {
+  0% {
+    opacity: 0;
+    transform: translatey(100px);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+/*pseudo classes */
+.btn:link,
+.btn:visited {
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 15px 40px;
+  margin: auto;
+  display: inline-block;
+  border-radius: 100px;
+  transition: all .2s;
+  position: relative;
+  animation: moveInBottom 1s ease-out; /*animation name , duration , function , delay*/
+}
+
+.btn:hover{
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, .2); /* X Y Blure Color */
+}
+.btn:active{
+  transform: translateY(-1px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, .2); /* X Y Blure Color */
+}
+
+.btn-white {
+  background-color: var(--white);
+  color: var(--grey);
+}
+/*Like an element behind the element (like childe of the bottun*/
+.btn::after{
+  content:"";
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  border-radius: 100px;
+  position: absolute;
+  top:0;
+  left:0;
+  z-index: -1;
+  transition: all .4s;
+}
+
+.btn-white::after{
+  background-color: var(--white);
+}
+
+.btn:hover::after{
+  transform: scaleX(1.4) scaleY(1.6);
+  opacity: 0;
+}
